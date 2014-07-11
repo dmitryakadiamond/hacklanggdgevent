@@ -4,18 +4,13 @@ class ContestWinnerFinder
 {
 
 
-    /*
-     * I wish I could set params in some short form !
-     * Also I wish I could tell that detection_mode is an integer !
-     **/
     public function __construct(public int $finder_mode=1)
     {
     }
 
-    private function shuffle_assoc<T>(Map<string, T> $list): Map<string, T> {
-        if (!is_array($list)) return $list;
-
-        $keys = array_keys($list);
+    private function shuffle_assoc<T>(Map<string, T> $list): Map<string, T> 
+    {
+	$keys = $list->toKeysArray();
         shuffle($keys);
         $random = Map{};
         foreach ($keys as $key)
@@ -85,5 +80,3 @@ class ContestWinnerFinder
     }
 }
 
-//$c = new ContestWinnerFinder(2);
-//$c->main();
